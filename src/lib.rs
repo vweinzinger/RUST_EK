@@ -313,13 +313,21 @@ impl Game {
         }
     }
 
-    pub fn collides(&self, p: &Piece) -> bool {
-        // TODO: true if any block is out of bounds (y<0 is allowed until
-        // lock) or hits Solid.
-        // Treat y< as allowed (spawning above the board), but x bounds
-        // must hold.
-        // Once y>=0, check cell occupancy.
-        unimplemented!()
+
+
+    fn is_valid(&self, piece: Piece) -> bool {
+        for (x, y) in blocks_for(piece) {
+            if x < 0 || x >= BOARD_W || y >= BOARD_H {
+                return false;
+            }
+            if y >= 0 {
+                let idx = (y * BOARD_W + x) as usize;
+                if self.board[idx] != 0 {
+                    return false;
+                }
+            }
+        }
+        true
     }
 
 
