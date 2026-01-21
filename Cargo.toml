@@ -1,0 +1,12 @@
+[package]
+name = "game_core"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+rand = "0.9.2"
+# rand relies on getrandom; for wasm32-unknown-unknown we need the JS-backed implementation.
+getrandom = { version = "0.3", features = ["wasm_js"] }
+
+[dev-dependencies]
+rstest = "0.26.1"
