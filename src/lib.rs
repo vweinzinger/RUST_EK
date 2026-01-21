@@ -100,7 +100,7 @@ const SHAPES: [[[(i8, i8); 4]; 4]; 7] = [
 fn shape_index(kind: Tetromino) -> usize {
     (kind.id() as usize) - 1
 }
-
+// Todo
 fn blocks_for(piece: Piece) -> [(i32, i32); 4] {
     let rot = (piece.rot % 4) as usize;
     let shape = &SHAPES[shape_index(piece.kind)][rot];
@@ -252,7 +252,7 @@ impl Game {
             game_over: self.game_over,
         }
     }
-
+    // Todo
     pub fn rotate_cw(&mut self) {
         if self.game_over {
             return;
@@ -260,8 +260,7 @@ impl Game {
         let mut rotated = self.current;
         rotated.rot = (rotated.rot + 1) % 4;
 
-        // Small "wall kick" offsets to make rotation feel less frustrating.
-        // Not full SRS, but good enough for a simple implementation.
+        // Small "wall kick" offsets
         const KICKS: [i32; 5] = [0, -1, 1, -2, 2];
         for dx in KICKS {
             let mut candidate = rotated;
@@ -312,7 +311,7 @@ impl Game {
             false
         }
     }
-    
+    // Todo
     fn is_valid(&self, piece: Piece) -> bool {
         for (x, y) in blocks_for(piece) {
             if x < 0 || x >= BOARD_W || y >= BOARD_H {
@@ -328,7 +327,7 @@ impl Game {
         true
     }
 
-
+    // Todo
     fn lock_piece(&mut self) {
         let id = self.current.kind.id();
         for (x, y) in blocks_for(self.current) {
@@ -339,7 +338,7 @@ impl Game {
             self.board[idx] = id;
         }
     }
-
+    // Todo
     fn clear_lines(&mut self) -> u32 {
         let mut cleared = 0u32;
         let mut y = BOARD_H - 1;
