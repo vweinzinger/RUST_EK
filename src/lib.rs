@@ -312,9 +312,7 @@ impl Game {
             false
         }
     }
-
-
-
+    
     fn is_valid(&self, piece: Piece) -> bool {
         for (x, y) in blocks_for(piece) {
             if x < 0 || x >= BOARD_W || y >= BOARD_H {
