@@ -322,6 +322,7 @@ impl Game {
         unimplemented!()
     }
 
+
     fn lock_piece(&mut self) {
         let id = self.current.kind.id();
         for (x, y) in blocks_for(self.current) {
